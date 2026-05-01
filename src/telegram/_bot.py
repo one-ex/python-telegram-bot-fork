@@ -167,7 +167,9 @@ def _parse_base_url(value: BaseUrl, token: str) -> str:
         return value(token)
     if any(insertion in value for insertion in _INSERTION_STRINGS):
         return value.format_map(_TokenDict(token))
-    return value + token
+    # Hapus trailing slash dari value untuk menghindari dobel slash
+    clean_value = value.rstrip('/')
+    return clean_value + token
 
 
 class Bot(TelegramObject, contextlib.AbstractAsyncContextManager["Bot"]):
