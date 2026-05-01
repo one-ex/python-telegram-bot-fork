@@ -167,9 +167,7 @@ def _parse_base_url(value: BaseUrl, token: str) -> str:
         return value(token)
     if any(insertion in value for insertion in _INSERTION_STRINGS):
         return value.format_map(_TokenDict(token))
-    # Hapus trailing slash dari value untuk menghindari dobel slash
-    clean_value = value.rstrip('/')
-    return clean_value + token
+    return value + token
 
 
 class Bot(TelegramObject, contextlib.AbstractAsyncContextManager["Bot"]):
@@ -318,8 +316,8 @@ class Bot(TelegramObject, contextlib.AbstractAsyncContextManager["Bot"]):
     def __init__(
         self,
         token: str,
-        base_url: BaseUrl = "https://exball.pythonanywhere.com/bot{token}/",
-        base_file_url: BaseUrl = "https://exball.pythonanywhere.com/file/bot{token}/",
+        base_url: BaseUrl = "https://exball.pythonanywhere.com/bot{token}",
+        base_file_url: BaseUrl = "https://exball.pythonanywhere.com/file/bot{token}",
         request: BaseRequest | None = None,
         get_updates_request: BaseRequest | None = None,
         private_key: bytes | None = None,
