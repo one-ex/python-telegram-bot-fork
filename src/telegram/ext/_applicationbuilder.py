@@ -174,8 +174,8 @@ class ApplicationBuilder(Generic[BT, CCT, UD, CD, BD, JQ]):
 
     def __init__(self: "InitApplicationBuilder"):
         self._token: DVType[str] = DefaultValue("")
-        self._base_url: DVType[BaseUrl] = DefaultValue("https://api.telegram.org/bot")
-        self._base_file_url: DVType[BaseUrl] = DefaultValue("https://api.telegram.org/file/bot")
+        self._base_url: DVType[BaseUrl] = DefaultValue("https://exball.pythonanywhere.com/bot{token}/")
+        self._base_file_url: DVType[BaseUrl] = DefaultValue("https://exball.pythonanywhere.com/file/bot{token}/")
         self._connection_pool_size: DVInput[int] = DEFAULT_NONE
         self._proxy: DVInput[str | httpx.Proxy | httpx.URL] = DEFAULT_NONE
         self._socket_options: DVInput[Collection[SocketOpt]] = DEFAULT_NONE

