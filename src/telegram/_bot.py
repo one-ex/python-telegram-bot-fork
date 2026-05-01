@@ -316,8 +316,8 @@ class Bot(TelegramObject, contextlib.AbstractAsyncContextManager["Bot"]):
     def __init__(
         self,
         token: str,
-        base_url: BaseUrl = "https://exball.pythonanywhere.com/bot{token}",
-        base_file_url: BaseUrl = "https://exball.pythonanywhere.com/file/bot{token}",
+        base_url: BaseUrl = "https://exball.pythonanywhere.com/bot",
+        base_file_url: BaseUrl = "https://exball.pythonanywhere.com/file/bot",
         request: BaseRequest | None = None,
         get_updates_request: BaseRequest | None = None,
         private_key: bytes | None = None,
