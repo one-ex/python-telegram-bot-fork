@@ -167,8 +167,6 @@
       - Used for unpinning a message
     * - :meth:`~telegram.Bot.unpin_all_chat_messages`
       - Used for unpinning all pinned chat messages
-    * - :meth:`~telegram.Bot.get_user_profile_audios`
-      - Used for obtaining user's profile audios
     * - :meth:`~telegram.Bot.get_user_profile_photos`
       - Used for obtaining user's profile pictures
     * - :meth:`~telegram.Bot.get_chat`
@@ -183,8 +181,6 @@
       - Used for getting the list of boosts added to a chat
     * - :meth:`~telegram.Bot.leave_chat`
       - Used for leaving a chat
-    * - :meth:`~telegram.Bot.set_chat_member_tag`
-      - Used for setting the tag of a chat member
 
 .. raw:: html
 
@@ -249,11 +245,6 @@
       - Used for setting the name of the bot
     * - :meth:`~telegram.Bot.get_my_name`
       - Used for obtaining the name of the bot
-    * - :meth:`~telegram.Bot.set_my_profile_photo`
-      - Used for setting the profile photo of the bot
-    * - :meth:`~telegram.Bot.remove_my_profile_photo`
-      - Used for removing the profile photo of the bot
-
 
 .. raw:: html
 

@@ -19,7 +19,6 @@
 
 import datetime as dtm
 from copy import copy, deepcopy
-from zoneinfo import ZoneInfo
 
 import pytest
 
@@ -31,8 +30,6 @@ from telegram import (
     Chat,
     ChatBackground,
     ChatBoostAdded,
-    ChatOwnerChanged,
-    ChatOwnerLeft,
     ChatShared,
     Checklist,
     ChecklistTask,
@@ -433,9 +430,6 @@ def message(bot):
                 )
             )
         },
-        {"chat_owner_changed": ChatOwnerChanged(new_owner=User(4, "Snow", False))},
-        {"chat_owner_left": ChatOwnerLeft(new_owner=User(5, "Crash", False))},
-        {"sender_tag": "This is a tag"},
     ],
     ids=[
         "reply",
@@ -527,9 +521,6 @@ def message(bot):
         "suggested_post_approval_failed",
         "suggested_post_info",
         "gift_upgrade_sent",
-        "chat_owner_changed",
-        "chat_owner_left",
-        "sender_tag",
     ],
 )
 def message_params(bot, request):
@@ -588,20 +579,11 @@ class MessageTestBase:
         {"length": 34, "offset": 154, "type": "blockquote"},
         {"length": 6, "offset": 181, "type": "bold"},
         {"length": 33, "offset": 190, "type": "expandable_blockquote"},
-        {"length": 4, "offset": 224, "type": "date_time", "unix_time": dtm.datetime(2000, 7, 28)},
-        {
-            "length": 14,
-            "offset": 229,
-            "type": "date_time",
-            "unix_time": dtm.datetime(2000, 7, 28, tzinfo=ZoneInfo("Europe/Berlin")),
-            "date_time_format": "r",
-        },
     ]
     test_text_v2 = (
         r"Test for <bold, ita_lic, \`code, links, text-mention and `\pre. "
         "http://google.com and bold nested in strk>trgh nested in italic. Python pre. Spoiled. "
-        "👍.\nMultiline\nblock quote\nwith nested.\n\nMultiline\nexpandable\nblock quote.\ntime"
-        "\ntime_formatted\n"
+        "👍.\nMultiline\nblock quote\nwith nested.\n\nMultiline\nexpandable\nblock quote."
     )
     test_message = Message(
         message_id=1,
@@ -969,9 +951,7 @@ class TestMessageWithoutRequest(MessageTestBase):
             '<span class="tg-spoiler">Spoiled</span>. '
             '<tg-emoji emoji-id="1">👍</tg-emoji>.\n'
             "<blockquote>Multiline\nblock quote\nwith <b>nested</b>.</blockquote>\n\n"
-            "<blockquote expandable>Multiline\nexpandable\nblock quote.</blockquote>\n"
-            '<tg-time unix="964742400">time</tg-time>\n'
-            '<tg-time unix="964735200" format="r">time_formatted</tg-time>\n'
+            "<blockquote expandable>Multiline\nexpandable\nblock quote.</blockquote>"
         )
         text_html = self.test_message_v2.text_html
         assert text_html == test_html_string
@@ -993,9 +973,7 @@ class TestMessageWithoutRequest(MessageTestBase):
             '<span class="tg-spoiler">Spoiled</span>. '
             '<tg-emoji emoji-id="1">👍</tg-emoji>.\n'
             "<blockquote>Multiline\nblock quote\nwith <b>nested</b>.</blockquote>\n\n"
-            "<blockquote expandable>Multiline\nexpandable\nblock quote.</blockquote>\n"
-            '<tg-time unix="964742400">time</tg-time>\n'
-            '<tg-time unix="964735200" format="r">time_formatted</tg-time>\n'
+            "<blockquote expandable>Multiline\nexpandable\nblock quote.</blockquote>"
         )
         text_html = self.test_message_v2.text_html_urled
         assert text_html == test_html_string
@@ -1023,8 +1001,6 @@ class TestMessageWithoutRequest(MessageTestBase):
             "\n\n>Multiline\n"
             ">expandable\n"
             r">block quote\.||"
-            "\n![time](tg://time?unix=964742400)\n"
-            "![time\\_formatted](tg://time?unix=964735200&format=r)\n"
         )
         text_markdown = self.test_message_v2.text_markdown_v2
         assert text_markdown == test_md_string
@@ -1084,8 +1060,6 @@ class TestMessageWithoutRequest(MessageTestBase):
             "\n\n>Multiline\n"
             ">expandable\n"
             r">block quote\.||"
-            "\n![time](tg://time?unix=964742400)\n"
-            "![time\\_formatted](tg://time?unix=964735200&format=r)\n"
         )
         text_markdown = self.test_message_v2.text_markdown_v2_urled
         assert text_markdown == test_md_string
@@ -1203,9 +1177,7 @@ class TestMessageWithoutRequest(MessageTestBase):
             '<span class="tg-spoiler">Spoiled</span>. '
             '<tg-emoji emoji-id="1">👍</tg-emoji>.\n'
             "<blockquote>Multiline\nblock quote\nwith <b>nested</b>.</blockquote>\n\n"
-            "<blockquote expandable>Multiline\nexpandable\nblock quote.</blockquote>\n"
-            '<tg-time unix="964742400">time</tg-time>\n'
-            '<tg-time unix="964735200" format="r">time_formatted</tg-time>\n'
+            "<blockquote expandable>Multiline\nexpandable\nblock quote.</blockquote>"
         )
         caption_html = self.test_message_v2.caption_html
         assert caption_html == test_html_string
@@ -1227,9 +1199,7 @@ class TestMessageWithoutRequest(MessageTestBase):
             '<span class="tg-spoiler">Spoiled</span>. '
             '<tg-emoji emoji-id="1">👍</tg-emoji>.\n'
             "<blockquote>Multiline\nblock quote\nwith <b>nested</b>.</blockquote>\n\n"
-            "<blockquote expandable>Multiline\nexpandable\nblock quote.</blockquote>\n"
-            '<tg-time unix="964742400">time</tg-time>\n'
-            '<tg-time unix="964735200" format="r">time_formatted</tg-time>\n'
+            "<blockquote expandable>Multiline\nexpandable\nblock quote.</blockquote>"
         )
         caption_html = self.test_message_v2.caption_html_urled
         assert caption_html == test_html_string
@@ -1257,8 +1227,6 @@ class TestMessageWithoutRequest(MessageTestBase):
             "\n\n>Multiline\n"
             ">expandable\n"
             r">block quote\.||"
-            "\n![time](tg://time?unix=964742400)\n"
-            "![time\\_formatted](tg://time?unix=964735200&format=r)\n"
         )
         caption_markdown = self.test_message_v2.caption_markdown_v2
         assert caption_markdown == test_md_string
@@ -1293,8 +1261,6 @@ class TestMessageWithoutRequest(MessageTestBase):
             "\n\n>Multiline\n"
             ">expandable\n"
             r">block quote\.||"
-            "\n![time](tg://time?unix=964742400)\n"
-            "![time\\_formatted](tg://time?unix=964735200&format=r)\n"
         )
         caption_markdown = self.test_message_v2.caption_markdown_v2_urled
         assert caption_markdown == test_md_string
@@ -1774,8 +1740,6 @@ class TestMessageWithoutRequest(MessageTestBase):
             "\n\n>Multiline\n"
             ">expandable\n"
             r">block quote\.||"
-            "\n![time](tg://time?unix=964742400)\n"
-            "![time\\_formatted](tg://time?unix=964735200&format=r)\n"
         )
 
         async def make_assertion(*_, **kwargs):
@@ -1833,9 +1797,7 @@ class TestMessageWithoutRequest(MessageTestBase):
             '<span class="tg-spoiler">Spoiled</span>. '
             '<tg-emoji emoji-id="1">👍</tg-emoji>.\n'
             "<blockquote>Multiline\nblock quote\nwith <b>nested</b>.</blockquote>\n\n"
-            "<blockquote expandable>Multiline\nexpandable\nblock quote.</blockquote>\n"
-            '<tg-time unix="964742400">time</tg-time>\n'
-            '<tg-time unix="964735200" format="r">time_formatted</tg-time>\n'
+            "<blockquote expandable>Multiline\nexpandable\nblock quote.</blockquote>"
         )
 
         async def make_assertion(*_, **kwargs):

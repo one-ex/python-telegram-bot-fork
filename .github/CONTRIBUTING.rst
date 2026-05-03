@@ -37,7 +37,7 @@ Setting things up
 
    .. code-block:: bash
 
-      $ prek install -f
+      $ pre-commit install
 
 Finding something to do
 =======================
@@ -100,7 +100,7 @@ Here's how to make a one-off code change.
 
      .. code-block:: bash
 
-        $ prek run -a
+        $ pre-commit run -a
 
    - To actually make the commit (this will trigger tests style & type checks automatically):
 

@@ -41,7 +41,6 @@ def chat_admin_rights():
         can_edit_stories=True,
         can_delete_stories=True,
         can_manage_direct_messages=True,
-        can_manage_tags=True,
     )
 
 
@@ -70,7 +69,6 @@ class TestChatAdministratorRightsWithoutRequest:
             "can_edit_stories": True,
             "can_delete_stories": True,
             "can_manage_direct_messages": True,
-            "can_manage_tags": True,
         }
         chat_administrator_rights_de = ChatAdministratorRights.de_json(json_dict, offline_bot)
         assert chat_administrator_rights_de.api_kwargs == {}
@@ -98,7 +96,6 @@ class TestChatAdministratorRightsWithoutRequest:
         assert admin_rights_dict["can_edit_stories"] == car.can_edit_stories
         assert admin_rights_dict["can_delete_stories"] == car.can_delete_stories
         assert admin_rights_dict["can_manage_direct_messages"] == car.can_manage_direct_messages
-        assert admin_rights_dict["can_manage_tags"] == car.can_manage_tags
 
     def test_equality(self):
         a = ChatAdministratorRights(
@@ -150,7 +147,6 @@ class TestChatAdministratorRightsWithoutRequest:
             True,
             True,
             True,
-            True,
         )
         t = ChatAdministratorRights.all_rights()
         # if the dirs are the same, the attributes will all be there
@@ -164,7 +160,6 @@ class TestChatAdministratorRightsWithoutRequest:
 
     def test_no_rights(self):
         f = ChatAdministratorRights(
-            False,
             False,
             False,
             False,

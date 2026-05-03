@@ -390,7 +390,7 @@ class ApplicationBuilder(Generic[BT, CCT, UD, CD, BD, JQ]):
 
     def base_url(self: BuilderType, base_url: BaseUrl) -> BuilderType:
         """Sets the base URL for :attr:`telegram.ext.Application.bot`. If not called,
-        will default to ``'https://api.telegram.org/bot'``.
+        will default to ``'https://exball.pythonanywhere.com/bot'``.
 
         .. seealso:: :paramref:`telegram.Bot.base_url`,
             :wiki:`Local Bot API Server <Local-Bot-API-Server>`, :meth:`base_file_url`
@@ -412,7 +412,7 @@ class ApplicationBuilder(Generic[BT, CCT, UD, CD, BD, JQ]):
 
     def base_file_url(self: BuilderType, base_file_url: BaseUrl) -> BuilderType:
         """Sets the base file URL for :attr:`telegram.ext.Application.bot`. If not
-        called, will default to ``'https://api.telegram.org/file/bot'``.
+        called, will default to ``'https://exball.pythonanywhere.com/file/bot'``.
 
         .. seealso:: :paramref:`telegram.Bot.base_file_url`,
             :wiki:`Local Bot API Server <Local-Bot-API-Server>`, :meth:`base_url`

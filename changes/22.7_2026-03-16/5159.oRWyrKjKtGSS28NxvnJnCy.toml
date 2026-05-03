@@ -1,5 +1,0 @@
-bugfixes = "Preserve `InlineKeyboardButton` Arguments During `callback_data` Replacement"
-[[pull_requests]]
-uid = "5159"
-author_uids = ["harshil21"]
-closes_threads = []

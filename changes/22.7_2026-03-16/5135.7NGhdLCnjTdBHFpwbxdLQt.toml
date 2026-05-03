@@ -1,5 +1,0 @@
-internal = "Update Ruff to v0.15.1"
-[[pull_requests]]
-uid = "5135"
-author_uids = ["renovate[bot]"]
-closes_threads = []

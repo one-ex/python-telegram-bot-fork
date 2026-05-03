@@ -1,5 +1,0 @@
-internal = "Bump Sphinx Related Dependencies, Fix `uv` and Docs Build"
-[[pull_requests]]
-uid = "5168"
-author_uids = ["harshil21"]
-closes_threads = []

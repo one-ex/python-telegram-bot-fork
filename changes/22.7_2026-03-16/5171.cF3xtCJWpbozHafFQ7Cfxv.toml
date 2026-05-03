@@ -1,5 +1,0 @@
-internal = "Update GitHub Artifact Actions (major)"
-[[pull_requests]]
-uid = "5171"
-author_uids = ["renovate[bot]"]
-closes_threads = []

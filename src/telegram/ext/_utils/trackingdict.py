@@ -109,7 +109,7 @@ class TrackingDict(UserDict, Generic[_KT, _VT]):
             self.__track_write(key)
         if isinstance(default, DefaultValue):
             return super().pop(key)
-        return super().pop(key, default)
+        return super().pop(key, default=default)
 
     def clear(self) -> None:
         self.__track_write(set(super().keys()))

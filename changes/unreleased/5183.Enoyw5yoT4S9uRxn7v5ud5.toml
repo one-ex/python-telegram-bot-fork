@@ -1,5 +1,0 @@
-internal = "Migrate from deprecated test-results-action to codecov-action"
-[[pull_requests]]
-uid = "5183"
-author_uids = ["Krishnachaitanyakc"]
-closes_threads = ["5158"]
